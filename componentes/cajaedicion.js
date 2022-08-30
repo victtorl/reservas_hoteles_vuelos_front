@@ -1,0 +1,170 @@
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { store } from '../redux/store';
+import { editarRegistroService, getHoteles, getReservas, getVuelos } from '../services/services';
+import toast, { Toaster } from 'react-hot-toast';
+
+const Cajaedicion = () => {
+
+    useEffect(() => {
+        getHoteles()
+        getVuelos()
+        getReservas()
+     }, []);
+ 
+     const registroPayload = useSelector((state) => state.registroPayload)
+     const comboHotel = useSelector((state) => state.hoteles)
+     const comboVuelo = useSelector((state) => state.vuelos)
+     const comboReservas=useSelector((state)=>state.reservas)
+
+ const [formRegistro,setformRegistro]=useState({
+        hotel:'',
+        vuelo:'',
+        nombre:'',
+        dni:''
+      })
+
+      const handleChangeHotel=(event) => {
+        console.log(event.target.value);
+        store.dispatch({
+          type:'@pushregistroHotel',
+          payload:{
+            hotel:event.target.value,
+          }
+        })
+        setformRegistro({ ...formRegistro, [event.target.name]: event.target.value });
+      }
+      
+      const handleChangeVuelo=(event) => {
+        console.log(event.target.value);
+        store.dispatch({
+          type:'@pushregistroVuelo',
+          payload:{
+            vuelo:event.target.value,
+          }
+        })
+        setformRegistro({ ...formRegistro, [event.target.name]: event.target.value });
+      }  
+      const handleChangeNombre=(event) => {
+        console.log(event.target.value);
+        store.dispatch({
+          type:'@pushregistroNombre',
+          payload:{
+            nombre:event.target.value,
+          }
+        })
+        setformRegistro({ ...formRegistro, [event.target.name]: event.target.value });
+      } 
+      const handleChangeDni=(event) => {
+        console.log(event.target.value);
+        store.dispatch({
+          type:'@pushregistroDni',
+          payload:{
+            dni:event.target.value,
+          }
+        })
+        setformRegistro({ ...formRegistro, [event.target.name]: event.target.value });
+      }
+
+      const handleSelectReserva=async (event)=>{
+    
+        //filtrar datos por id
+        let  elem=comboReservas.filter((u)=>u.id === parseInt(event.target.value))
+        console.log(elem);
+        store.dispatch({
+          type:'@getRegistroPayload',
+          payload:{
+            id:{id:elem[0].id},
+            hotel:{hotel:elem[0].hotel},
+            vuelo:{vuelo:elem[0].vuelo},
+            nombre:{nombre:elem[0].nombre},
+            dni:{dni:elem[0].dni}
+          }
+        })
+        
+      }  
+
+function limpiarCampos(){
+  setformRegistro({
+    hotel:'',
+    vuelo:'',
+    nombre:'',
+    dni:''
+  })
+}
+
+const editarReserva=() => {
+  
+    toast((t) => (
+        <span>
+          <h6>IdReserva: <b>{registroPayload.id.id}</b></h6>    <br/>
+          <h6>Hotel: <b>{registroPayload.hotel.hotel}</b></h6>    <br/>
+          <h6>Vuelo: <b>{registroPayload.vuelo.vuelo}</b></h6>        <br/>
+          <h6>Nombre: <b>{registroPayload.nombre.nombre}</b></h6>    <br/>
+          <h6>DNI: <b>{registroPayload.dni.dni}</b></h6> <br/>
+          
+          <button className='btn btn-primary' onClick={(e) => {
+            e.preventDefault()
+            toast.dismiss(t.id)
+             limpiarCampos()
+            toast.success('Editado con exito!')
+             editarRegistroService(registroPayload.id.id,registroPayload.hotel.hotel,registroPayload.vuelo.vuelo,registroPayload.nombre.nombre,registroPayload.dni.dni)
+          }}>
+            ¿Guardar Datos?
+          </button>
+        </span>
+      ));
+}      
+
+    return (
+                                <div className='col'>
+                                    <div className='cajaregistro'>
+                                        <label className='labelregistro'>Seleccione Reserva</label>
+                                        <>
+                                            <select name='hotel'  className='inputregistro' defaultValue={'DEFAULT'} onChange={handleSelectReserva} >
+                                                                        <option value="DEFAULT" >--Elija Su Reserva--</option>
+                                                                    {comboReservas.map((u,i) => (
+                                                                        <option key={i} value={u.id}  >{u.nombre}-{u.dni}</option>
+                                                                    ))
+                                                                    }
+                                            </select> 
+                                        </>
+                                        <form>
+                                        <>
+                                        <label className='labeltitleregistro'>Hotel</label>
+                                            <select name='hotel'  className='inputregistro' defaultValue={'DEFAULT'} onChange={handleChangeHotel} >
+                                                                        <option value="DEFAULT" >{registroPayload.hotel.hotel}</option>
+                                                                    {comboHotel.map((u,i) => (
+                                                                        <option key={i} value={u.id}  >{u.nombre}</option>
+                                                                    ))
+                                                                    }
+                                            </select> 
+                                        </>
+
+                                        <>
+                                        <label className='labeltitleregistro' >Vuelo</label>
+                                            <select name='vuelo'  className='inputregistro' defaultValue={'DEFAULT'} onChange={handleChangeVuelo} >
+                                                                        <option value='DEFAULT'  >{registroPayload.vuelo.vuelo}</option>
+                                                                    {comboVuelo.map((u,id) => (
+                                                                        <option key={id} value={u.id}  >{u.origen}-{u.destino}</option>
+                                                                    ))
+                                                                    }
+                                            </select> 
+                                        </>  
+                                    
+                                        <label className='labeltitleregistro'>Nombre</label>
+                                    <input type="text" name='nombre'value={registroPayload.nombre.nombre} placeholder={registroPayload.nombre.nombre} className='inputregistro' onChange={handleChangeNombre} />
+                                        <label className='labeltitleregistro'>DNI</label>                             
+                                    <input type="text" name='dni' value={formRegistro.dni} placeholder={registroPayload.dni.dni} className='inputregistro' onChange={handleChangeDni}/>
+                                        </form>
+
+                                        <div>
+                                        <Toaster/>
+                                            <button type="button" class="btn btn-warning" onClick={editarReserva}>EDITAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+    );
+}
+
+export default Cajaedicion;

@@ -1,0 +1,36 @@
+
+.navbar{
+    background-color: #1A8280;
+
+    }
+
+.fondo{
+    background-color: #1A8280;
+    
+}    
+
+.contenido{
+    background-color: red;
+}
+.viajes{
+    background-color:#14A085;
+    height:100vh;
+}
+
+.vuelos{
+    background-color:#CF850F;
+    height:100vh;
+}
+.reservas{
+    background-color:#7F8C8D;
+    height:100vh;
+}
+
+.fondo_registro{
+    margin-top: 2rem;
+    background-color: #14A085;
+    border-radius: 10px;
+    padding: 3rem;  
+    
+}
+
