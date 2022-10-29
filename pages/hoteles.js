@@ -31,10 +31,10 @@ useEffect(() => {
 
 
     return (
+        <div className="hotelescontainer">
         <Layout>
             <div className='container text-center viajes'>
-            <div className="row">
-                <div className="col">
+            <div className="row hotelescontainertable ">
                 <table className="table">
                 <thead>
                     <tr>
@@ -65,11 +65,12 @@ useEffect(() => {
                 </tbody>
                 <ModalHotel/>
                 </table>
-                </div>
+                
                 
             </div>
             </div>
         </Layout>
+      </div>
     );
 }
 

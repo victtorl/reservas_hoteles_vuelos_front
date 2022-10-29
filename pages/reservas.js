@@ -21,12 +21,11 @@ const Reservas = () => {
       getReservas()
       },[])
     return (
-        <div>
+        <div className='reservascontainer' >
             
         <Layout>
         <div className='container text-center vuelos'>
-        <div className="row">
-            <div className="col">
+        <div className="row reservascontainertable">
             <table className="table">
             <thead>
                 <tr>
@@ -55,8 +54,6 @@ const Reservas = () => {
            
             </table>
             </div>
-            
-        </div>
         </div>
         </Layout>
     </div>

@@ -29,21 +29,20 @@ getVuelos()
 
 
     return (
-        <div>
+        <div className="vueloscontainer">
             
             <Layout>
             <div className='container text-center vuelos'>
-            <div className="row">
-                <div className="col">
+            <div className="row vuelocontainerthead">
                 <table className="table">
-                <thead>
+                <thead >
                     <tr>
                     <th scope="col">Categoria</th>
                     <th scope="col">Disponibilidad</th>
                     <th scope="col">Origen</th>
                     <th scope="col">Destino</th>
                     <th scope="col">Precio</th>
-                    <th scope="col">DetalLe Vuelo</th>
+                    <th scope="col">Detalle Vuelo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,7 +67,7 @@ getVuelos()
                 </tbody>
                 <ModalVuelo/>
                 </table>
-                </div>
+                
                 
             </div>
             </div>

@@ -2,6 +2,9 @@ import '../estilos/estilos.css'
 import '../styles/app.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'antd/dist/antd.css';
+import '../estiloscss/vuelos.scss';
+import '../estiloscss/hoteles.scss';
+import '../estiloscss/reservas.scss';
 
 
 import { useEffect } from 'react'
