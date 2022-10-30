@@ -37,16 +37,12 @@ const Reservas = () => {
             </thead>
             <tbody>
                 {
-                    
                     reservas.map((u,id) => 
                         <tr key={id} onClick={()=>Mostrar(u)}>
                         <td>{u.id}</td>
                         <td>{u.hotel}</td>
                         <td>{u.nombre}</td>
                         <td>{u.dni}</td>
-                        <td>
-                        </td>
-                        
                         </tr>
                     )
                 }
