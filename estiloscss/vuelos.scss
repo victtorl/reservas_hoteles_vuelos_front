@@ -3,15 +3,65 @@
     .vueloscontainer{
         .vuelocontainerthead{
             overflow-x: scroll;
+            height: 100vh;
             .table{
                 thead{
                     tr{
                         display: flex;
-                        // flex-direction: row;
+                        flex-direction: row;
                         white-space: nowrap;
                         justify-content: space-between;
                         th{
                         // color: red;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                        width: 10rem;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        display: flex;
+                        flex-direction: row;
+                        white-space: nowrap;
+                        align-items: center;
+                        
+                        td{
+                        width: 10rem;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}
+
+//pc
+@media only screen and (min-width:1000px){
+    .vueloscontainer{
+        // background-color: red;
+        .vueloscontainerhead{
+            height: 100vh;
+            overflow-x: scroll;
+            .table{
+                thead{
+                    tr{
+                        th{
+                        // color: red;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                        width: 10rem;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td{
+                        width: 10rem;
                         margin-left: 1rem;
                         margin-right: 1rem;
                         }

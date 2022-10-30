@@ -3,6 +3,7 @@
     .hotelescontainer{
         background-color: red;
         .hotelescontainertable{
+            height: 100vh;
             overflow-x: scroll;
             .table{
                 thead{
@@ -13,6 +14,55 @@
                         justify-content: space-between;
                         th{
                         // color: red;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                        width: 10rem;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        display: flex;
+                        flex-direction: row;
+                        white-space: nowrap;
+                        align-items: center;
+                        
+                        td{
+                        width: 10rem;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}
+
+//pc
+@media only screen and (min-width:1000px){
+    .hotelescontainer{
+        // background-color: red;
+        .hotelescontainertable{
+            height: 100vh;
+            overflow-x: scroll;
+            .table{
+                thead{
+                    tr{
+                        th{
+                        // color: red;
+                        margin-left: 1rem;
+                        margin-right: 1rem;
+                        width: 10rem;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td{
+                        width: 10rem;
                         margin-left: 1rem;
                         margin-right: 1rem;
                         }

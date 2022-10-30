@@ -50,7 +50,7 @@ getVuelos()
                         
                         vuelos.map((u,id) => 
                             <tr key={id} onClick={()=>Mostrar(u)}>
-                            <th scope="row">{u.categoria}</th>
+                            <td>{u.categoria}</td>
                             <td>{u.disponible}</td>
                             <td>{u.origen}</td>
                             <td>{u.destino}</td>
